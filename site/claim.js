@@ -86,20 +86,25 @@ async function claimable(user) {
     return { g, w, via: 'eth_simulateV1' };
   } catch (e) {
     // fallback: eth_call claim() — verified to return (godlet, whype)
-    const data = await pc.call({ account: user, to: REWARDS, data: encodeFunctionData({ abi, functionName: 'claim' }) });
-    const [g, w] = decodeFunctionResult({ abi, functionName: 'claim', data: data.data });
-    return { g, w, via: 'eth_call' };
+    try {
+      const data = await pc.call({ account: user, to: REWARDS, data: encodeFunctionData({ abi, functionName: 'claim' }) });
+      const [g, w] = decodeFunctionResult({ abi, functionName: 'claim', data: data.data });
+      return { g, w, via: 'eth_call' };
+    } catch (_) {
+      return null;   // claim() reverts (e.g. nothing accrued) -> caller falls back to earned()/earnedPaired()
+    }
   }
 }
 
 async function refresh() {
   if (!viewAddr || !pc) return;
   try {
-    const [c, e, ep] = await Promise.all([
+    let [c, e, ep] = await Promise.all([
       claimable(viewAddr),
       pc.readContract({ address: REWARDS, abi, functionName: 'earned', args: [viewAddr] }),
       pc.readContract({ address: REWARDS, abi, functionName: 'earnedPaired', args: [viewAddr] }),
     ]);
+    if (!c) c = { g: e, w: ep, via: 'earned()' };
     ui.god.textContent = fmt(c.g);
     ui.why.textContent = fmt(c.w, 8);
     ui.earned.textContent = `earned(): ${fmt(e)} GODLET · earnedPaired(): ${fmt(ep, 8)} WHYPE · via ${c.via}`;
