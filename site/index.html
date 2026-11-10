@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$GODLET — The Tiniest God on Elysium</title>
+<meta name="description" content="GODLET — the tiniest god on Elysium. Zero IQ, infinite aura, diaper secured. A community memecoin where holders share in trading fees.">
+<meta property="og:title" content="$GODLET — The Tiniest God on Elysium">
+<meta property="og:description" content="Every pantheon starts small. Zero IQ. Infinite aura. In Godlet we trust.">
+<meta property="og:image" content="assets/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Godletcoin">
+<meta name="twitter:image" content="assets/og.jpg">
+<meta name="theme-color" content="#05070d">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/michroma.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Michroma';src:url(assets/michroma.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Share Tech Mono';src:url(assets/sharetechmono.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Cinzel';src:url(assets/cinzel.woff2) format('woff2');font-weight:400 900;font-display:swap}
+:root{
+  --bg:#05070d; --bg2:#0a0f1c; --panel:rgba(12,18,32,.72);
+  --ink:#e4f6ff; --dim:#8fa3b8; --cyan:#8ce8ff; --gold:#ffc869; --gold2:#d69634; --red:#ff5046;
+  --line:rgba(228,246,255,.16);
+  --wide:'Michroma',system-ui,sans-serif; --mono:'Share Tech Mono',ui-monospace,monospace; --serif:'Cinzel',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{color:var(--ink);font-family:var(--mono);font-size:16px;line-height:1.6;overflow-x:hidden;background:radial-gradient(1200px 700px at 70% -10%,#13203a 0%,transparent 60%),var(--bg)}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+::selection{background:var(--gold);color:#000}
+
+/* film grain + scanlines */
+body::before{content:"";position:fixed;inset:-50%;z-index:100;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain 1s steps(4) infinite}
+body::after{content:"";position:fixed;inset:0;z-index:99;pointer-events:none;
+  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);mix-blend-mode:multiply;opacity:.35}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(0,0)}}
+
+.wrap{width:min(1200px,92vw);margin:0 auto}
+.mono{font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.label{font-family:var(--mono);font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan)}
+.gold-text{background:linear-gradient(180deg,#fff4c8 18%,#f6cd6e 45%,#d69634 66%,#fad682 86%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(255,190,90,.35))}
+h2{font-family:var(--wide);font-weight:400;font-size:clamp(28px,4.2vw,56px);line-height:1.15;letter-spacing:.06em;text-transform:uppercase}
+
+/* brackets */
+.brk{position:relative}
+.brk::before,.brk::after{content:"";position:absolute;width:26px;height:26px;border:2px solid var(--gold);pointer-events:none}
+.brk::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.brk::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,backdrop-filter .3s}
+nav.solid{background:rgba(5,7,13,.78);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--wide);letter-spacing:.2em;font-size:15px}
+.brand img{width:38px;height:38px;filter:drop-shadow(0 0 10px rgba(255,190,90,.5))}
+.navlinks{display:flex;gap:28px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.navlinks a:hover{color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;padding:14px 22px;border:1px solid var(--gold);color:var(--gold);background:rgba(255,200,105,.06);transition:all .2s;cursor:pointer}
+.btn:hover{background:var(--gold);color:#120c02;box-shadow:0 0 30px rgba(255,190,90,.45)}
+.btn.solid{background:linear-gradient(180deg,#ffe29a,#e6a943);color:#1a1102;border-color:transparent;font-weight:700}
+.btn.solid:hover{filter:brightness(1.08)}
+.btn.ghost{border-color:var(--line);color:var(--ink);background:rgba(228,246,255,.03)}
+.btn.ghost:hover{border-color:var(--cyan);color:#001018;background:var(--cyan)}
+
+/* hero */
+#hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
+#hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04)}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,13,.55) 0%,rgba(5,7,13,.05) 30%,rgba(5,7,13,.25) 60%,var(--bg) 100%)}
+.hud{position:absolute;inset:96px 3vw 3vw;pointer-events:none}
+.hud .c{position:absolute;width:44px;height:44px;border:2px solid rgba(228,246,255,.65)}
+.hud .c1{top:0;left:0;border-right:0;border-bottom:0}.hud .c2{top:0;right:0;border-left:0;border-bottom:0}
+.hud .c3{bottom:0;left:0;border-right:0;border-top:0}.hud .c4{bottom:0;right:0;border-left:0;border-top:0}
+.hud-tl{position:absolute;top:22px;left:28px;font-size:13px;letter-spacing:.2em;color:var(--ink);opacity:.85}
+.hud-tl span{color:var(--cyan)}
+.hud-tr{position:absolute;top:10px;right:28px;text-align:right}
+.hud-tr b{display:block;font-family:var(--wide);font-weight:400;font-size:64px;line-height:1}
+.hud-tr span{font-size:12px;letter-spacing:.22em;color:var(--cyan)}
+.rec{position:absolute;bottom:22px;right:28px;font-size:13px;letter-spacing:.2em;color:var(--red);animation:blink 1.2s steps(2) infinite}
+.coords{position:absolute;bottom:22px;left:28px;font-size:12px;letter-spacing:.2em;color:var(--dim)}
+@keyframes blink{50%{opacity:.2}}
+.hero-content{position:relative;z-index:2;padding:0 0 13vh;width:100%;text-align:center}
+.kicker{color:var(--cyan);font-size:14px;letter-spacing:.45em;margin-bottom:18px;min-height:1.6em}
+.wordmark{font-family:var(--wide);font-weight:400;font-size:clamp(40px,12.5vw,190px);letter-spacing:.12em;line-height:1;margin-left:.12em}
+.tagline{margin-top:18px;font-size:clamp(14px,1.6vw,19px);letter-spacing:.38em;color:var(--ink)}
+.ca{margin:34px auto 0;display:inline-flex;align-items:center;gap:14px;padding:12px 14px 12px 20px;border:1px solid var(--line);background:rgba(5,9,18,.6);backdrop-filter:blur(6px);font-size:14px;letter-spacing:.06em;max-width:94vw}
+.ca span{color:var(--gold);letter-spacing:.2em}
+.ca code{font-family:var(--mono);color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.copy{font-family:var(--mono);font-size:12px;letter-spacing:.2em;padding:8px 12px;border:1px solid var(--gold);color:var(--gold);background:transparent;cursor:pointer;text-transform:uppercase;white-space:nowrap}
+.copy:hover{background:var(--gold);color:#120c02}
+.ctas{margin-top:26px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* live strip */
+.strip{position:relative;z-index:3;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(8,12,22,.85)}
+.strip .wrap{display:grid;grid-template-columns:repeat(5,1fr)}
+.stat{padding:22px 10px;text-align:center;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0}
+.stat small{display:block;font-size:11px;letter-spacing:.28em;color:var(--dim);text-transform:uppercase}
+.stat b{display:block;margin-top:6px;font-family:var(--wide);font-weight:400;font-size:clamp(15px,1.7vw,22px);letter-spacing:.06em}
+.up{color:#5be59a}.down{color:#ff6b5e}
+
+section{position:relative}
+.pad{padding:130px 0}
+
+/* scan */
+.scan-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:70px;align-items:center}
+.scanner{position:relative;aspect-ratio:1/1.05;border:1px solid var(--line);background:radial-gradient(60% 60% at 50% 55%,rgba(255,190,90,.18),transparent 70%),linear-gradient(180deg,#0b1222,#060912);overflow:hidden}
+.scanner img{position:absolute;left:50%;bottom:6%;height:84%;width:auto;transform:translateX(-50%);filter:drop-shadow(0 0 30px rgba(255,190,90,.35))}
+.ring{position:absolute;left:50%;top:50%;width:86%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(140,232,255,.35)}
+.ring::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:2px dashed rgba(228,246,255,.18);animation:spin 40s linear infinite}
+.ring::before{content:"";position:absolute;inset:6%;border-radius:50%;border:3px solid transparent;border-top-color:var(--cyan);animation:spin 5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.beam{position:absolute;left:8%;right:8%;height:2px;background:var(--cyan);box-shadow:0 0 18px var(--cyan),0 0 60px rgba(140,232,255,.6);animation:beam 2.8s ease-in-out infinite}
+.beam::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:70px;background:linear-gradient(0deg,rgba(140,232,255,.18),transparent)}
+@keyframes beam{0%{top:12%}50%{top:90%}100%{top:12%}}
+.tag-float{position:absolute;top:7%;right:6%;padding:6px 10px;background:rgba(10,14,20,.7);border:1px solid var(--gold);color:var(--gold);font-size:12px;letter-spacing:.14em}
+.rows{margin-top:34px;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:150px 1fr auto;gap:16px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line);font-size:16px;letter-spacing:.14em;text-transform:uppercase}
+.row span:first-child{color:var(--dim)}
+.row .v{color:var(--ink)} .row .v.g{color:var(--gold)}
+.row i{font-style:normal;font-size:12px;color:var(--cyan)}
+.meter{margin-top:28px;display:flex;align-items:center;gap:16px;font-size:13px;letter-spacing:.2em;color:var(--dim)}
+.meter .bar{flex:1;height:6px;background:rgba(228,246,255,.08);position:relative;overflow:hidden}
+.meter .bar i{position:absolute;inset:0;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold));transition:width 2.4s cubic-bezier(.2,.8,.2,1)}
+.in .meter .bar i{width:100%}
+
+/* lore */
+.lore{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+.lore p{color:#c9d7e6;font-size:17px;margin-top:18px;letter-spacing:.02em;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.lore p b{color:var(--gold);font-weight:600}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.fact{background:var(--bg2);padding:26px}
+.fact b{display:block;font-family:var(--wide);font-weight:400;font-size:30px}
+.fact span{font-size:12px;letter-spacing:.24em;color:var(--dim);text-transform:uppercase}
+
+/* trailer */
+.screen{position:relative;border:1px solid var(--line);background:#000;margin-top:40px}
+.screen video{width:100%;aspect-ratio:16/9;object-fit:cover}
+.screen-bar{display:flex;justify-content:space-between;padding:12px 16px;font-size:12px;letter-spacing:.24em;color:var(--dim);border-bottom:1px solid var(--line);text-transform:uppercase;background:var(--bg2)}
+.screen-bar b{color:var(--red);font-weight:400;animation:blink 1.2s steps(2) infinite}
+
+/* believe */
+#believe{height:100vh;min-height:620px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;text-align:center}
+#believe video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#believe .shade{background:linear-gradient(180deg,var(--bg) 0%,rgba(5,7,13,.1) 25%,rgba(5,7,13,.2) 55%,rgba(5,7,13,.92) 88%,var(--bg) 100%)}
+.believe-txt{position:relative;z-index:2;padding-bottom:12vh}
+.believe-txt h2{font-family:var(--serif);font-weight:600;font-size:clamp(64px,13vw,200px);letter-spacing:.24em;margin-right:-.24em;color:#f0f6ff;text-shadow:0 0 40px rgba(255,220,160,.35)}
+.believe-txt p{margin-top:8px;font-family:var(--wide);font-size:clamp(13px,1.5vw,20px);letter-spacing:.42em}
+
+/* blessings */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+.card{position:relative;padding:34px 30px;border:1px solid var(--line);background:var(--panel);transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);border-color:rgba(255,200,105,.5)}
+.card .n{font-family:var(--wide);font-size:13px;color:var(--gold);letter-spacing:.2em}
+.card h3{font-family:var(--wide);font-weight:400;font-size:21px;letter-spacing:.06em;margin:16px 0 12px;text-transform:uppercase}
+.card p{color:#b8c7d8;font-size:15px;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.01em}
+
+/* buy */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px;counter-reset:s}
+.step{padding:30px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(140,232,255,.05),transparent);position:relative}
+.step::before{counter-increment:s;content:"0" counter(s);font-family:var(--wide);font-size:46px;color:transparent;-webkit-text-stroke:1px rgba(255,200,105,.7);display:block;margin-bottom:10px}
+.step h3{font-family:var(--wide);font-weight:400;font-size:18px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.step p{color:#b8c7d8;font-size:15px;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.step .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.step .links a{font-size:12px;letter-spacing:.18em;padding:9px 12px;border:1px solid var(--line);text-transform:uppercase}
+.step .links a:hover{border-color:var(--gold);color:var(--gold)}
+
+/* moods */
+.moods{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:50px}
+.mood{border:1px solid var(--line);background:linear-gradient(180deg,#16203a,#080c16);overflow:hidden;position:relative;transition:transform .25s,border-color .25s}
+.mood img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;filter:saturate(.25) brightness(.8) hue-rotate(160deg);transition:filter .35s}
+.mood:hover,.mood.dom{border-color:var(--gold);transform:translateY(-6px)}
+.mood:hover img,.mood.dom img{filter:none}
+.mood .lab{display:flex;justify-content:space-between;padding:12px;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.mood .lab b{font-weight:400;color:var(--cyan)}
+.mood.dom .lab span{color:var(--gold)}
+.mood .pb{height:3px;background:rgba(228,246,255,.08)} .mood .pb i{display:block;height:100%;background:var(--cyan)}
+.mood.dom .pb i{background:var(--gold)}
+.dominant{margin-top:30px;text-align:center;font-family:var(--wide);font-size:clamp(16px,2vw,26px);letter-spacing:.2em}
+
+/* chart */
+.chart{margin-top:40px;border:1px solid var(--line);background:#000;height:min(70vh,620px)}
+.chart iframe{width:100%;height:100%;border:0}
+
+/* footer */
+footer{padding:120px 0 60px;text-align:center;border-top:1px solid var(--line);background:radial-gradient(800px 400px at 50% 0%,rgba(255,190,90,.12),transparent 70%)}
+footer .coin{width:min(260px,60vw);margin:0 auto;animation:float 6s ease-in-out infinite;filter:drop-shadow(0 0 40px rgba(255,190,90,.45))}
+@keyframes float{50%{transform:translateY(-14px) rotate(2deg)}}
+.flinks{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:36px 0}
+.disclaimer{max-width:760px;margin:40px auto 0;font-size:12px;color:#6f8196;letter-spacing:.06em;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,40px);opacity:0;z-index:200;padding:12px 18px;background:var(--gold);color:#120c02;font-size:13px;letter-spacing:.2em;text-transform:uppercase;transition:all .3s}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:900px){
+  .navlinks{display:none}
+  .scan-grid,.lore{grid-template-columns:1fr;gap:44px}
+  .cards,.steps{grid-template-columns:1fr}
+  .moods{grid-template-columns:repeat(3,1fr)}
+  .strip .wrap{grid-template-columns:repeat(2,1fr)}
+  .stat{border-left:0;border-top:1px solid var(--line)}
+  .hud-tr b{font-size:40px}
+  .row{grid-template-columns:110px 1fr;font-size:14px} .row i{display:none}
+  .pad{padding:90px 0}
+  .ca code{max-width:52vw}
+  .hud-tr,.coords{display:none}
+  .hud{inset:84px 4vw 4vw}
+  .wordmark{letter-spacing:.06em;margin-left:.06em}
+  .kicker{font-size:11px;letter-spacing:.24em}
+  .tagline{letter-spacing:.22em;font-size:12px}
+  nav .btn.solid{padding:10px 14px;font-size:12px}
+  .brand{font-size:13px}.brand img{width:32px;height:32px}
+  .believe-txt h2{letter-spacing:.12em;margin-right:-.12em}
+  .ctas .btn{padding:12px 16px;font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <a class="brand" href="#hero"><img src="assets/coin.webp" alt="GODLET coin">GODLET</a>
+    <div class="navlinks">
+      <a href="#scan">Subject</a><a href="#lore">Lore</a><a href="#blessings">Blessings</a><a href="#buy">How to buy</a><a href="#chart">Chart</a>
+    </div>
+    <a class="btn solid" href="#buy">Buy $GODLET</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <video autoplay muted loop playsinline preload="auto" poster="assets/hero.jpg"><source src="assets/hero.mp4" type="video/mp4"></video>
+  <div class="shade"></div>
+  <div class="hud">
+    <i class="c c1"></i><i class="c c2"></i><i class="c c3"></i><i class="c c4"></i>
+    <div class="hud-tl mono">ELYSIUM // ARCHIVE 0001<br><span>SIGNAL ACQUIRED</span></div>
+    <div class="hud-tr"><b>01</b><span class="mono">NEW DEITY DETECTED</span></div>
+    <div class="coords mono">41.7151 N &nbsp;44.8271 E</div>
+    <div class="rec mono">● REC</div>
+  </div>
+  <div class="hero-content">
+    <p class="kicker mono" data-decode="EVERY PANTHEON STARTS SMALL"></p>
+    <h1 class="wordmark gold-text">GODLET</h1>
+    <p class="tagline mono">The tiniest god on Elysium</p>
+    <div class="ca"><span>CA</span><code id="ca">0x383C746dCfc2b623bE73dbC2e4C4F2C3d68D7bA3</code><button class="copy" data-copy>Copy</button></div>
+    <div class="ctas">
+      <a class="btn solid" href="https://fomo.family/tokens/elysium/0x383c746dcfc2b623be73dbc2e4c4f2c3d68d7ba3?r=ShinySoundBug" target="_blank" rel="noopener">Buy on fomo</a>
+      <a class="btn" href="https://pump.fun/coin/0x383C746dCfc2b623bE73dbC2e4C4F2C3d68D7bA3" target="_blank" rel="noopener">pump.fun</a>
+      <a class="btn" id="bankr" href="#" target="_blank" rel="noopener">Buy via @bankrbot</a>
+      <a class="btn ghost" href="https://x.com/Godletcoin" target="_blank" rel="noopener">X / Twitter</a>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <div class="stat"><small>Price</small><b id="s-price">—</b></div>
+    <div class="stat"><small>Market cap</small><b id="s-mc">—</b></div>
+    <div class="stat"><small>24h</small><b id="s-ch">—</b></div>
+    <div class="stat"><small>Liquidity</small><b id="s-liq">—</b></div>
+    <div class="stat"><small>Chain</small><b>Elysium</b></div>
+  </div>
+</div>
+
+<section id="scan" class="pad">
+  <div class="wrap scan-grid rv">
+    <div class="scanner brk">
+      <div class="ring"></div>
+      <img src="assets/godlet.webp" alt="Godlet raising his fist">
+      <div class="beam"></div>
+      <div class="tag-float mono">GODLET // 99.9% DIVINE</div>
+    </div>
+    <div>
+      <p class="label">Subject scan // Sector 08</p>
+      <h2 style="margin-top:14px">New deity <span class="gold-text">detected</span></h2>
+      <div class="rows">
+        <div class="row"><span>Subject</span><span class="v" data-decode="GODLET"></span><i>ID OK</i></div>
+        <div class="row"><span>Class</span><span class="v" data-decode="DEMIGOD (JR)"></span><i>RARE</i></div>
+        <div class="row"><span>Height</span><span class="v" data-decode="0.62 M"></span><i>SMOL</i></div>
+        <div class="row"><span>IQ</span><span class="v g" data-decode="0"></span><i>VERIFIED</i></div>
+        <div class="row"><span>Aura</span><span class="v g" data-decode="MAX"></span><i>OFF CHARTS</i></div>
+        <div class="row"><span>Diaper</span><span class="v" data-decode="SECURED"></span><i>✓</i></div>
+      </div>
+      <div class="meter"><span>SCANNING</span><div class="bar"><i></i></div><span>100%</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="lore" class="pad" style="padding-top:40px">
+  <div class="wrap lore rv">
+    <div>
+      <p class="label">Lore</p>
+      <h2 style="margin-top:14px">Every pantheon<br><span class="gold-text">starts small.</span></h2>
+      <p>On the day <b>Elysium</b> went live, a new god was born above the clouds.</p>
+      <p>He is 0.62 meters tall. His IQ scans at zero. His aura is off the charts. His diaper is secured.</p>
+      <p><b>$GODLET</b> is not a protocol, a roadmap or a promise. It's a chubby demigod with a golden laurel, a lightning bolt he can barely hold, and a growing congregation of believers. A meme made with love for the first days of Elysium.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><b class="gold-text">1B</b><span>Total supply</span></div>
+      <div class="fact"><b>HYPE</b><span>Paired with WHYPE</span></div>
+      <div class="fact"><b>0</b><span>Presale</span></div>
+      <div class="fact"><b class="gold-text">∞</b><span>Aura</span></div>
+    </div>
+  </div>
+  <div class="wrap rv">
+    <div class="screen brk">
+      <div class="screen-bar"><span>Transmission // GODLET_teaser.mp4</span><b>● LIVE</b></div>
+      <video controls playsinline preload="none" poster="assets/trailer.jpg"><source src="assets/trailer.mp4" type="video/mp4"></video>
+    </div>
+  </div>
+</section>
+
+<section id="believe">
+  <video autoplay muted loop playsinline preload="none" poster="assets/temple.jpg"><source src="assets/temple.mp4" type="video/mp4"></video>
+  <div class="shade"></div>
+  <div class="believe-txt rv">
+    <h2>BELIEVE</h2>
+    <p class="gold-text">IN GODLET WE TRUST</p>
+  </div>
+</section>
+
+<section id="blessings" class="pad">
+  <div class="wrap rv">
+    <p class="label">Blessings for believers</p>
+    <h2 style="margin-top:14px">Hold the god.<br><span class="gold-text">Receive the blessings.</span></h2>
+    <div class="cards">
+      <div class="card"><span class="n">// 01</span><h3>Holder rewards</h3><p>A share of the trading fees from every $GODLET trade is distributed back to holders. The congregation gets paid for its faith.</p></div>
+      <div class="card"><span class="n">// 02</span><h3>Fair launch</h3><p>Launched on Elysium via @bankrbot. No presale, no private round. Everyone kneels at the same altar.</p></div>
+      <div class="card"><span class="n">// 03</span><h3>Native to Elysium</h3><p>Liquidity paired with HYPE on Uniswap v3, live on fomo and pump.fun from day one of the Hyperliquid L2.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="buy" class="pad" style="padding-top:20px">
+  <div class="wrap rv">
+    <p class="label">Initiation ritual</p>
+    <h2 style="margin-top:14px">How to <span class="gold-text">kneel</span></h2>
+    <div class="steps">
+      <div class="step"><h3>Get HYPE on Elysium</h3><p>Bridge HYPE from HyperEVM to Elysium, or fund the fomo app and skip the bridge entirely.</p>
+        <div class="links"><a href="https://elysium.kinetiq.xyz/bridge" target="_blank" rel="noopener">Elysium bridge</a><a href="https://fomo.family/?r=ShinySoundBug" target="_blank" rel="noopener">fomo app</a></div></div>
+      <div class="step"><h3>Pick your temple</h3><p>Trade on fomo or pump.fun, or just tag Bankr on X: <span style="color:var(--gold)">"@bankrbot buy $10 of $GODLET"</span>.</p>
+        <div class="links"><a href="https://fomo.family/tokens/elysium/0x383c746dcfc2b623be73dbc2e4c4f2c3d68d7ba3?r=ShinySoundBug" target="_blank" rel="noopener">fomo</a><a href="https://pump.fun/coin/0x383C746dCfc2b623bE73dbC2e4C4F2C3d68D7bA3" target="_blank" rel="noopener">pump.fun</a><a class="bankr" href="#" target="_blank" rel="noopener">@bankrbot</a></div></div>
+      <div class="step"><h3>Paste the CA &amp; believe</h3><p>Only trust this contract address. No presale, no airdrop, no DMs.</p>
+        <div class="links"><a href="#" data-copy>Copy CA</a><a href="https://elysium.kinetiq.xyz/token/0x383C746dCfc2b623bE73dbC2e4C4F2C3d68D7bA3" target="_blank" rel="noopener">Explorer</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="moods" class="pad" style="padding-top:20px">
+  <div class="wrap rv">
+    <p class="label">Emotion scan</p>
+    <h2 style="margin-top:14px">Moods of a <span class="gold-text">god</span></h2>
+    <div class="moods">
+      <div class="mood"><img src="assets/face_neutral.webp" alt="Neutral"><div class="lab"><span>Neutral</span><b>12%</b></div><div class="pb"><i style="width:12%"></i></div></div>
+      <div class="mood dom"><img src="assets/face_smile.webp" alt="Smug"><div class="lab"><span>Smug</span><b>98%</b></div><div class="pb"><i style="width:98%"></i></div></div>
+      <div class="mood"><img src="assets/face_shock.webp" alt="Shocked"><div class="lab"><span>Shocked</span><b>41%</b></div><div class="pb"><i style="width:41%"></i></div></div>
+      <div class="mood"><img src="assets/face_anger.webp" alt="Furious"><div class="lab"><span>Furious</span><b>63%</b></div><div class="pb"><i style="width:63%"></i></div></div>
+      <div class="mood"><img src="assets/face_sad.webp" alt="Devastated"><div class="lab"><span>Devastated</span><b>7%</b></div><div class="pb"><i style="width:7%"></i></div></div>
+      <div class="mood"><img src="assets/face_think.webp" alt="Plotting"><div class="lab"><span>Plotting</span><b>88%</b></div><div class="pb"><i style="width:88%"></i></div></div>
+    </div>
+    <p class="dominant gold-text">Dominant trait: smug</p>
+  </div>
+</section>
+
+<section id="chart" class="pad" style="padding-top:20px">
+  <div class="wrap rv">
+    <p class="label">Live // GODLET / WHYPE</p>
+    <h2 style="margin-top:14px">Watch the <span class="gold-text">ascension</span></h2>
+    <div class="chart brk"><iframe loading="lazy" title="GODLET chart on DexScreener" src="https://dexscreener.com/elysium/0xf1d8e1cfdaedc6425e80d64a680362d9dc736d63?embed=1&amp;loadChartSettings=0&amp;trades=0&amp;tabs=0&amp;info=0&amp;chartLeftToolbar=0&amp;chartTheme=dark&amp;theme=dark&amp;chartStyle=1&amp;chartType=usd&amp;interval=15"></iframe></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img class="coin" src="assets/coin.webp" alt="GODLET coin">
+    <h2 style="margin-top:34px" class="gold-text">In Godlet we trust</h2>
+    <div class="ca" style="margin-top:26px"><span>CA</span><code>0x383C746dCfc2b623bE73dbC2e4C4F2C3d68D7bA3</code><button class="copy" data-copy>Copy</button></div>
+    <div class="flinks">
+      <a class="btn ghost" href="https://x.com/Godletcoin" target="_blank" rel="noopener">X</a>
+      <a class="btn ghost" href="https://dexscreener.com/elysium/0xf1d8e1cfdaedc6425e80d64a680362d9dc736d63" target="_blank" rel="noopener">DexScreener</a>
+      <a class="btn ghost" href="https://www.geckoterminal.com/elysium/pools/0xf1d8e1cfdaedc6425e80d64a680362d9dc736d63" target="_blank" rel="noopener">GeckoTerminal</a>
+      <a class="btn ghost" href="https://elysium.kinetiq.xyz/token/0x383C746dCfc2b623bE73dbC2e4C4F2C3d68D7bA3" target="_blank" rel="noopener">Explorer</a>
+      <a class="btn ghost" href="https://fomo.family/tokens/elysium/0x383c746dcfc2b623be73dbc2e4c4f2c3d68d7ba3?r=ShinySoundBug" target="_blank" rel="noopener">fomo</a>
+      <a class="btn ghost" href="https://pump.fun/coin/0x383C746dCfc2b623bE73dbC2e4C4F2C3d68D7bA3" target="_blank" rel="noopener">pump.fun</a>
+    </div>
+    <p class="disclaimer">$GODLET is a community meme coin with no intrinsic value and no expectation of financial return. Nothing on this site is financial advice. Crypto is volatile — only use what you can afford to lose. Not affiliated with Kinetiq or Elysium.</p>
+    <p class="mono" style="margin-top:26px;font-size:12px;color:#55667a">© 2026 GODLET // Every pantheon starts small</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast">CA copied — welcome, believer</div>
+
+<script>
+const CA='0x383C746dCfc2b623bE73dbC2e4C4F2C3d68D7bA3';
+const PAIR='0xf1d8e1cfdaedc6425e80d64a680362d9dc736d63';
+// bankr tweet intent
+const intent='https://x.com/intent/post?text='+encodeURIComponent('@bankrbot buy $10 of $GODLET '+CA);
+document.querySelectorAll('#bankr,.bankr').forEach(a=>a.href=intent);
+// copy CA
+const toast=document.getElementById('toast');
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',e=>{
+  e.preventDefault();
+  (navigator.clipboard?navigator.clipboard.writeText(CA):Promise.reject()).catch(()=>{
+    const t=document.createElement('textarea');t.value=CA;document.body.appendChild(t);t.select();try{document.execCommand('copy')}catch(_){}t.remove();
+  }).finally(()=>{toast.classList.add('on');setTimeout(()=>toast.classList.remove('on'),1800)});
+}));
+// nav background
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+// decode text
+const G='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&/<>*+=';
+function decode(el){
+  const s=el.dataset.decode;if(el.dataset.done)return;el.dataset.done=1;
+  let f=0;const tail=4,total=s.length+tail;
+  const iv=setInterval(()=>{
+    const k=Math.floor(f/1.6);let o='';
+    for(let i=0;i<s.length;i++){
+      if(s[i]===' '){o+=' ';continue}
+      if(i<k-tail)o+=s[i]; else if(i<k)o+=G[Math.floor(Math.random()*G.length)]; else o+=' ';
+    }
+    el.textContent=o;f++;
+    if(k>total){clearInterval(iv);el.textContent=s}
+  },28);
+}
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  e.target.classList.add('in');
+  e.target.querySelectorAll('[data-decode]').forEach((d,i)=>setTimeout(()=>decode(d),180*i));
+  io.unobserve(e.target);
+}),{threshold:.2});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelectorAll('.hero-content [data-decode]').forEach(decode),400);
+// lazy-start background videos when visible
+const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){v.play&&v.play().catch(()=>{})}else if(v.autoplay){v.pause()}}),{threshold:.05});
+document.querySelectorAll('video[autoplay]').forEach(v=>vio.observe(v));
+// live stats from DexScreener
+const fmt=n=>{n=+n;if(!isFinite(n))return'—';if(n>=1e9)return'$'+(n/1e9).toFixed(2)+'B';if(n>=1e6)return'$'+(n/1e6).toFixed(2)+'M';if(n>=1e3)return'$'+(n/1e3).toFixed(1)+'K';return'$'+n.toFixed(0)};
+const SUB='₀₁₂₃₄₅₆₇₈₉';
+const fmtP=p=>{p=+p;if(!isFinite(p)||p<=0)return'—';if(p>=0.01)return'$'+p.toFixed(4);
+  const z=Math.floor(-Math.log10(p));const digits=Math.round(p*Math.pow(10,z+4)).toString().slice(0,4);
+  return z>=3&&z<10?'$0.0'+SUB[z]+digits:'$'+p.toPrecision(4)};
+async function stats(){
+  try{
+    const r=await fetch('https://api.dexscreener.com/latest/dex/pairs/elysium/'+PAIR);const j=await r.json();
+    const p=(j.pairs||[j.pair])[0];if(!p)return;
+    document.getElementById('s-price').textContent=fmtP(p.priceUsd);
+    document.getElementById('s-mc').textContent=fmt(p.marketCap||p.fdv);
+    const ch=p.priceChange&&p.priceChange.h24;const el=document.getElementById('s-ch');
+    if(ch!=null){el.textContent=(ch>0?'+':'')+(+ch).toFixed(1)+'%';el.className=ch>=0?'up':'down'}
+    document.getElementById('s-liq').textContent=fmt(p.liquidity&&p.liquidity.usd);
+  }catch(e){}
+}
+stats();setInterval(stats,30000);
+</script>
+</body>
+</html>
