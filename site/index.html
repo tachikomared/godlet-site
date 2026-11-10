@@ -7,11 +7,12 @@
 <meta name="description" content="GODLET — the tiniest god on Elysium. Zero IQ, infinite aura, diaper secured. A community memecoin where holders share in trading fees.">
 <meta property="og:title" content="$GODLET — The Tiniest God on Elysium">
 <meta property="og:description" content="Every pantheon starts small. Zero IQ. Infinite aura. In Godlet we trust.">
-<meta property="og:image" content="assets/og.jpg">
+<meta property="og:image" content="https://godlet.vercel.app/assets/og.jpg">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://godlet.vercel.app/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Godletcoin">
-<meta name="twitter:image" content="assets/og.jpg">
+<meta name="twitter:image" content="https://godlet.vercel.app/assets/og.jpg">
 <meta name="theme-color" content="#05070d">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -194,6 +195,30 @@ footer .coin{width:min(260px,60vw);margin:0 auto;animation:float 6s ease-in-out 
 .flinks{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:36px 0}
 .disclaimer{max-width:760px;margin:40px auto 0;font-size:12px;color:#6f8196;letter-spacing:.06em;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
 
+
+/* claim widget */
+.claim-panel{margin-top:46px;display:grid;grid-template-columns:1.1fr 1fr;border:1px solid var(--line);background:var(--panel)}
+.claim-left{padding:34px;border-right:1px solid var(--line)}
+.claim-right{padding:34px;display:flex;flex-direction:column;gap:16px}
+.cl-head{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
+.cl-head #cl-status{color:#5be59a}
+.cl-amt{margin-top:26px}
+.cl-amt small{display:block;font-size:12px;letter-spacing:.26em;color:var(--dim);text-transform:uppercase}
+.cl-amt b{display:block;font-family:var(--wide);font-weight:400;font-size:clamp(26px,3.4vw,44px);margin-top:4px;word-break:break-all}
+.cl-amt b span{font-size:.4em;color:var(--dim);margin-left:8px;letter-spacing:.2em}
+#cl-earned{margin-top:22px;font-size:11px;letter-spacing:.08em;color:#6f8196}
+.cl-kv{display:flex;justify-content:space-between;font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:10px 0;border-bottom:1px solid var(--line)}
+.cl-kv span:first-child{color:var(--dim)} .good{color:#5be59a}.bad{color:#ff6b5e}
+.claim-right .btn{justify-content:center;width:100%}
+.claim-right .btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none;filter:none}
+.cl-msg{min-height:1.4em;font-size:13px;letter-spacing:.06em;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#b8c7d8}
+.cl-msg a{color:var(--gold);text-decoration:underline}
+.cl-msg.ok{color:#5be59a}.cl-msg.err{color:#ff6b5e}.cl-msg.warn{color:var(--gold)}
+.cl-look{display:flex;gap:8px;margin-top:auto}
+.cl-look input{flex:1;min-width:0;background:rgba(5,9,18,.7);border:1px solid var(--line);color:var(--ink);font-family:var(--mono);font-size:12px;padding:10px 12px}
+.cl-look button{font-family:var(--mono);font-size:11px;letter-spacing:.18em;padding:10px 12px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;text-transform:uppercase}
+@media (max-width:900px){.claim-panel{grid-template-columns:1fr}.claim-left{border-right:0;border-bottom:1px solid var(--line)}}
+
 /* reveal */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -231,7 +256,7 @@ footer .coin{width:min(260px,60vw);margin:0 auto;animation:float 6s ease-in-out 
   <div class="wrap">
     <a class="brand" href="#hero"><img src="assets/coin.webp" alt="GODLET coin">GODLET</a>
     <div class="navlinks">
-      <a href="#scan">Subject</a><a href="#lore">Lore</a><a href="#blessings">Blessings</a><a href="#buy">How to buy</a><a href="#chart">Chart</a>
+      <a href="#scan">Subject</a><a href="#lore">Lore</a><a href="#blessings">Blessings</a><a href="#claim">Claim</a><a href="#buy">How to buy</a><a href="#chart">Chart</a>
     </div>
     <a class="btn solid" href="#buy">Buy $GODLET</a>
   </div>
@@ -336,6 +361,30 @@ footer .coin{width:min(260px,60vw);margin:0 auto;animation:float 6s ease-in-out 
       <div class="card"><span class="n">// 01</span><h3>Holder rewards</h3><p>A share of the trading fees from every $GODLET trade is distributed back to holders. The congregation gets paid for its faith.</p></div>
       <div class="card"><span class="n">// 02</span><h3>Fair launch</h3><p>Launched on Elysium via @bankrbot. No presale, no private round. Everyone kneels at the same altar.</p></div>
       <div class="card"><span class="n">// 03</span><h3>Native to Elysium</h3><p>Liquidity paired with HYPE on Uniswap v3, live on fomo and pump.fun from day one of the Hyperliquid L2.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<section id="claim" class="pad" style="padding-top:20px">
+  <div class="wrap rv">
+    <p class="label">Altar of rewards</p>
+    <h2 style="margin-top:14px">Claim your <span class="gold-text">blessings</span></h2>
+    <div class="claim-panel brk">
+      <div class="claim-left">
+        <div class="cl-head"><span>Claimable now</span><span id="cl-status">connecting…</span></div>
+        <div class="cl-amt"><small>GODLET</small><b id="cl-godlet">—</b></div>
+        <div class="cl-amt"><small>WHYPE</small><b id="cl-whype">—</b></div>
+        <p id="cl-earned"></p>
+      </div>
+      <div class="claim-right">
+        <div class="cl-kv"><span>Wallet</span><span id="cl-addr">not connected</span></div>
+        <div class="cl-kv"><span>Network</span><span id="cl-net">—</span></div>
+        <button class="btn ghost" id="cl-connect">Connect wallet</button>
+        <button class="btn solid" id="cl-claim" disabled>Connect to claim</button>
+        <p class="cl-msg" id="cl-msg">Holders earn a share of trading fees in GODLET and WHYPE. Gas is paid in HYPE on Elysium.</p>
+        <div class="cl-look"><input id="cl-lookup" placeholder="Check any address 0x…" spellcheck="false"><button id="cl-lookup-btn">Check</button></div>
+      </div>
     </div>
   </div>
 </section>
@@ -462,5 +511,6 @@ async function stats(){
 }
 stats();setInterval(stats,30000);
 </script>
+<script type="module" src="claim.js"></script>
 </body>
 </html>
